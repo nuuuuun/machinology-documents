@@ -7,13 +7,20 @@
   <style>
     :root {
       --gold: #b9935a;
-      --dark: #2d2a26;
+      --gold-dark: #8a6838;
+      --ink: #2d2926;
+      --muted: #6f6a63;
+      --bg: #ece7df;
       --beige: #f7f2ea;
-      --light: #fbfaf7;
-      --gray: #6f6a63;
-      --border: #d9c9b2;
-      --soft-border: #efe5d6;
+      --paper: #fffdf9;
       --white: #ffffff;
+      --line: #d9c9b2;
+      --soft-line: #efe5d6;
+      --dark: var(--ink);
+      --light: var(--beige);
+      --gray: var(--muted);
+      --border: var(--line);
+      --soft-border: var(--soft-line);
     }
 
     * {
@@ -22,10 +29,10 @@
 
     body {
       margin: 0;
-      background: #eee9e1;
+      background: var(--bg);
       color: var(--dark);
-      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-      line-height: 1.7;
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
+      line-height: 1.75;
       letter-spacing: 0.02em;
     }
 
@@ -34,7 +41,7 @@
       min-height: 297mm;
       margin: 24px auto;
       padding: 14mm 14.5mm;
-      background: var(--white);
+      background: var(--paper);
       box-shadow: 0 12px 40px rgba(45, 42, 38, 0.14);
       position: relative;
     }
@@ -283,7 +290,7 @@
       <div class="brand">Machinology</div>
 
       <p class="lead">
-        事業内容や目的に合わせて、必要な内容だけを整理したホームページを制作します。まずは小さく公開し、必要に応じて改善していける構成をご提案します。
+        Machinologyは、事業内容や目的に合わせて、必要な分だけ整えたホームページをご提案します。まずは小さく公開し、必要に応じて育てていける構成を一緒に考えます。
       </p>
 
       <h2 class="section-title">基本料金</h2>
