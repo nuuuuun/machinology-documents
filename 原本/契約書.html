@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ホームページ制作業務委託契約書 | Machinology</title>
+  <style>
+    :root {
+      --ink: #2d2926;
+      --muted: #6f675f;
+      --line: #ded6cc;
+      --paper: #fffdf9;
+      --bg: #f4efe8;
+      --accent: #b9935a;
+      --accent-dark: #8a6838;
+      --soft: #faf7f1;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 24px auto;
+      padding: 20mm 18mm;
+      background: var(--paper);
+      box-shadow: 0 14px 36px rgba(54, 43, 32, 0.12);
+      position: relative;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 9mm;
+      border: 1px solid rgba(185, 147, 90, 0.24);
+      pointer-events: none;
+    }
+
+    header {
+      position: relative;
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid var(--accent);
+      z-index: 1;
+    }
+
+    .brand {
+      font-size: 12px;
+      color: var(--accent-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 26px;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+    }
+
+    .meta {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 18px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .intro {
+      margin: 18px 0 20px;
+      font-size: 13.5px;
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      padding: 6px 10px;
+      background: linear-gradient(90deg, rgba(185,147,90,0.18), rgba(185,147,90,0.04));
+      border-left: 4px solid var(--accent);
+      font-size: 14px;
+      letter-spacing: 0.05em;
+    }
+
+    p { margin: 0 0 8px; }
+
+    .article {
+      font-size: 12.2px;
+      padding: 0 2px;
+    }
+
+    ol {
+      margin: 4px 0 0 1.4em;
+      padding: 0;
+    }
+
+    li { margin: 2px 0; }
+
+    .terms-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    .terms-table th,
+    .terms-table td {
+      border: 1px solid var(--line);
+      padding: 7px 8px;
+      vertical-align: top;
+    }
+
+    .terms-table th {
+      width: 30%;
+      background: var(--soft);
+      color: var(--accent-dark);
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .note-box {
+      margin-top: 16px;
+      padding: 12px 14px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .signature-area {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .signature-box {
+      border: 1px solid var(--line);
+      padding: 12px;
+      min-height: 120px;
+      font-size: 12px;
+      background: rgba(255,255,255,0.58);
+    }
+
+    .signature-title {
+      font-weight: 700;
+      color: var(--accent-dark);
+      margin-bottom: 8px;
+    }
+
+    .line {
+      display: inline-block;
+      min-width: 190px;
+      border-bottom: 1px solid var(--muted);
+      height: 1.4em;
+      vertical-align: bottom;
+    }
+
+    .page-break { page-break-before: always; }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 210mm;
+        min-height: 297mm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="brand">Machinology contract template</div>
+      <h1>ホームページ制作業務委託契約書</h1>
+      <div class="meta">
+        <div>契約締結日：<span class="line"></span></div>
+        <div>契約番号：<span class="line"></span></div>
+      </div>
+    </header>
+
+    <p class="intro">
+      発注者（以下「甲」という。）と、Machinology（以下「乙」という。）は、甲が乙に委託するホームページ制作業務について、以下のとおり業務委託契約（以下「本契約」という。）を締結する。
+    </p>
+
+    <section>
+      <h2>第1条（目的）</h2>
+      <div class="article">
+        <p>本契約は、甲が乙に対してホームページ制作、既存サイト改善、関連する軽微な設定・相談対応等の業務を委託し、乙がこれを受託するにあたり、必要な条件を定めることを目的とする。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>第2条（委託業務の内容）</h2>
+      <div class="article">
+        <p>乙が行う業務内容は、別途提示する見積書、仕様書、ヒアリングシート、メール、チャット等で合意した範囲とする。</p>
+        <ol>
+          <li>ホームページの構成案作成、デザイン作成、HTML/CSS/JavaScript等による実装</li>
+          <li>文章・画像等の反映、軽微な修正対応</li>
+          <li>公開に必要なサーバー、ドメイン、フォーム、外部サービス等に関する補助</li>
+          <li>その他、甲乙間で合意した関連業務</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2>第3条（契約金額および支払条件）</h2>
+      <div class="article">
+        <p>本業務の契約金額、支払時期、支払方法は、乙が発行する見積書または請求書に記載のとおりとする。</p>
+        <ol>
+          <li>振込手数料は、原則として甲の負担とする。</li>
+          <li>ドメイン、サーバー、外部サービス利用料、有料素材、広告費等の実費は、見積書に含まれる場合を除き、甲の負担とする。</li>
+          <li>契約後に業務範囲の追加または大幅な変更が発生した場合、乙は追加見積を提示できるものとする。</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2>第4条（制作に必要な資料の提供）</h2>
+      <div class="article">
+        <p>甲は、乙が本業務を遂行するために必要な文章、画像、ロゴ、アカウント情報、店舗情報、会社情報その他の資料を、乙が指定する期日までに提供するものとする。資料提供の遅延により納期に影響が生じた場合、乙は納期を合理的な範囲で延長できるものとする。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>第5条（納期・納品方法）</h2>
+      <div class="article">
+        <p>納期および納品方法は、見積書または個別の合意内容に従う。納品方法は、公開URLの提示、HTML等のデータ納品、または甲乙で合意した方法とする。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>第6条（確認・検収）</h2>
+      <div class="article">
+        <p>乙は制作物の完成後、甲に確認を依頼する。甲は確認依頼日から原則7日以内に、承認または修正希望を乙へ連絡するものとする。期間内に連絡がない場合、制作物は承認されたものとみなすことができる。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>第7条（修正対応）</h2>
+      <div class="article">
+        <p>見積範囲内の修正対応は、原則として軽微な文言変更、画像差し替え、色味や余白の調整等とする。構成変更、ページ追加、機能追加、デザインの全面変更その他大幅な変更は、追加費用の対象となる場合がある。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>第8条（著作権・使用権）</h2>
+      <div class="article">
+        <p>本業務により乙が制作した成果物について、甲は契約金額の支払い完了後、甲の事業活動に必要な範囲で使用できるものとする。ただし、乙が従前から保有しているノウハウ、テンプレート、汎用コード、制作手法、第三者素材の権利は乙または各権利者に留保される。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>第9条（第三者素材・外部サービス）</h2>
+      <div class="article">
+        <p>写真、イラスト、フォント、地図、予約システム、SNS、決済サービス、フォーム、アクセス解析等の第三者素材または外部サービスを利用する場合、甲は各サービスの利用規約、料金、仕様変更、停止等の条件に従うものとする。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>第10条（禁止事項）</h2>
+      <div class="article">
+        <p>甲は、乙に対し、法令または公序良俗に反する内容、第三者の権利を侵害する内容、虚偽または誤認を招く内容の掲載を依頼してはならない。甲が提供した資料に関して第三者との紛争が生じた場合、甲の責任において解決するものとする。</p>
+      </div>
+    </section>
+  </main>
+
+  <main class="page page-break">
+    <header>
+      <div class="brand">Machinology contract template</div>
+      <h1>ホームページ制作業務委託契約書</h1>
+    </header>
+
+    <section>
+      <h2>第11条（保守・更新）</h2>
+      <div class="article">
+        <p>公開後の保守、更新、バックアップ、セキュリティ確認、外部サービス設定変更等は、別途保守契約または個別見積によるものとする。保守契約がない場合、公開後の修正・調査・復旧対応は原則として有償とする。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>第12条（キャンセル・中途解約）</h2>
+      <div class="article">
+        <p>甲の都合により本契約をキャンセルまたは中途解約する場合、乙は進行状況に応じて、着手済み作業分、外注費、購入済み素材費、その他発生済み費用を請求できるものとする。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>第13条（秘密保持）</h2>
+      <div class="article">
+        <p>甲および乙は、本業務に関連して知り得た相手方の営業上、技術上、顧客情報その他の秘密情報を、相手方の承諾なく第三者に開示または漏えいしてはならない。ただし、すでに公知の情報、正当に保有していた情報、法令に基づき開示が求められる情報はこの限りではない。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>第14条（実績掲載）</h2>
+      <div class="article">
+        <p>乙は、甲の承諾を得たうえで、本業務の成果物、甲の名称、URL、制作概要等を乙の制作実績として掲載できるものとする。甲が掲載を希望しない場合は、事前に乙へ申し出るものとする。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>第15条（免責）</h2>
+      <div class="article">
+        <ol>
+          <li>乙は、制作物の公開により甲の売上、問い合わせ数、検索順位、アクセス数等の成果を保証するものではない。</li>
+          <li>サーバー障害、通信障害、外部サービスの仕様変更・停止、検索エンジンやSNSの仕様変更、天災地変その他乙の責めに帰さない事由による損害について、乙は責任を負わない。</li>
+          <li>乙の責任が認められる場合であっても、乙が負担する損害賠償額は、甲が乙に支払った本契約の金額を上限とする。ただし、乙に故意または重過失がある場合を除く。</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2>第16条（契約内容の変更）</h2>
+      <div class="article">
+        <p>本契約の内容を変更する場合、甲乙協議のうえ、メール、チャット、書面その他記録に残る方法により合意するものとする。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>第17条（協議事項）</h2>
+      <div class="article">
+        <p>本契約に定めのない事項または本契約の解釈に疑義が生じた場合、甲乙は誠意をもって協議し、解決を図るものとする。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>第18条（合意管轄）</h2>
+      <div class="article">
+        <p>本契約に関して紛争が生じた場合、乙の所在地を管轄する裁判所を第一審の専属的合意管轄裁判所とする。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>契約条件の記入欄</h2>
+      <table class="terms-table">
+        <tr>
+          <th>案件名</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>制作内容</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>契約金額</th>
+          <td>金　　　　　　　　　円（税込）</td>
+        </tr>
+        <tr>
+          <th>支払条件</th>
+          <td>例：着手金50％、納品後50％／または納品後一括払い</td>
+        </tr>
+        <tr>
+          <th>納期</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>特記事項</th>
+          <td></td>
+        </tr>
+      </table>
+    </section>
+
+    <div class="note-box">
+      本テンプレートは、ホームページ制作業務における一般的な契約条項のたたき台です。実際の取引内容、事業形態、所在地、支払条件、キャンセル条件等に応じて内容を調整してください。重要な契約で使用する場合は、専門家への確認をおすすめします。
+    </div>
+
+    <section>
+      <h2>署名または記名押印欄</h2>
+      <p class="article">本契約の成立を証するため、本書を2通作成し、甲乙署名または記名押印のうえ、各1通を保有する。</p>
+      <div class="signature-area">
+        <div class="signature-box">
+          <div class="signature-title">甲（発注者）</div>
+          <p>住所：</p>
+          <p>名称：</p>
+          <p>代表者：</p>
+          <p>署名または記名押印：</p>
+        </div>
+        <div class="signature-box">
+          <div class="signature-title">乙（受注者）</div>
+          <p>住所：</p>
+          <p>屋号：Machinology</p>
+          <p>代表者：</p>
+          <p>署名または記名押印：</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Machinology | Homepage Production Contract Template
+    </footer>
+  </main>
+</body>
+</html>

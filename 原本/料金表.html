@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>料金表｜Machinology</title>
+  <style>
+    :root {
+      --gold: #b9935a;
+      --dark: #2d2a26;
+      --beige: #f7f2ea;
+      --light: #fbfaf7;
+      --gray: #6f6a63;
+      --border: #d9c9b2;
+      --soft-border: #efe5d6;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #eee9e1;
+      color: var(--dark);
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 24px auto;
+      padding: 14mm 14.5mm;
+      background: var(--white);
+      box-shadow: 0 12px 40px rgba(45, 42, 38, 0.14);
+      position: relative;
+    }
+
+    .hero {
+      background: var(--beige);
+      text-align: center;
+      padding: 22px 24px 18px;
+      border-radius: 2px;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      margin: 0 0 4px;
+      font-size: 34px;
+      line-height: 1.2;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .brand {
+      text-align: right;
+      color: var(--gold);
+      font-size: 15px;
+      font-weight: 700;
+      margin: 4px 0 12px;
+    }
+
+    .lead {
+      margin: 0 0 20px;
+      font-size: 14px;
+    }
+
+    .section-title {
+      margin: 18px 0 7px;
+      font-size: 22px;
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .section-title.small {
+      font-size: 17px;
+      margin-top: 10px;
+    }
+
+    .gold-line {
+      height: 1px;
+      background: var(--gold);
+      margin: 0 0 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      margin: 0 0 8px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 9px;
+      vertical-align: middle;
+      font-size: 11.5px;
+      line-height: 1.55;
+    }
+
+    th {
+      background: var(--gold);
+      color: var(--white);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    tbody tr:nth-child(even) td {
+      background: var(--light);
+    }
+
+    .price {
+      text-align: center;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .service {
+      font-weight: 700;
+    }
+
+    .basic-table .col-service { width: 25%; }
+    .basic-table .col-price { width: 16%; }
+    .basic-table .col-use { width: 24%; }
+    .basic-table .col-content { width: 35%; }
+
+    .option-table th {
+      background: #efe5d6;
+      color: var(--dark);
+    }
+
+    .option-table .col-item { width: 29%; }
+    .option-table .col-price { width: 19%; }
+    .option-table .col-desc { width: 52%; }
+
+    .note {
+      margin: 4px 0;
+      color: var(--gray);
+      font-size: 11.5px;
+      line-height: 1.6;
+    }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--soft-border);
+      margin-bottom: 12px;
+    }
+
+    .flow-card {
+      min-height: 88px;
+      padding: 12px 14px;
+      border-right: 1px solid var(--soft-border);
+      border-bottom: 1px solid var(--soft-border);
+      background: var(--beige);
+    }
+
+    .flow-card:nth-child(2),
+    .flow-card:nth-child(4) {
+      border-right: 0;
+      background: var(--light);
+    }
+
+    .flow-card:nth-child(3),
+    .flow-card:nth-child(4) {
+      border-bottom: 0;
+    }
+
+    .flow-card h3 {
+      margin: 0 0 4px;
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+
+    .flow-card p {
+      margin: 0;
+      color: var(--gray);
+      font-size: 11.5px;
+      line-height: 1.65;
+    }
+
+    .check-list,
+    .bullet-list {
+      margin: 0 0 12px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .check-list li {
+      margin: 2px 0;
+      padding-left: 22px;
+      position: relative;
+      font-size: 12.5px;
+    }
+
+    .check-list li::before {
+      content: "□";
+      position: absolute;
+      left: 0;
+      color: var(--dark);
+    }
+
+    .bullet-list li {
+      margin: 3px 0;
+      padding-left: 1em;
+      text-indent: -1em;
+      color: var(--gray);
+      font-size: 11.5px;
+      line-height: 1.6;
+    }
+
+    .contact-box {
+      margin-top: 16px;
+      padding: 13px 20px;
+      text-align: center;
+      background: var(--beige);
+    }
+
+    .contact-box .main {
+      margin: 0 0 2px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .contact-box .sub {
+      margin: 0;
+      color: var(--gray);
+      font-size: 11.5px;
+    }
+
+    .footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 8mm;
+      text-align: center;
+      color: var(--gray);
+      font-size: 10px;
+    }
+
+    @media print {
+      body {
+        background: var(--white);
+      }
+
+      .page {
+        width: auto;
+        min-height: 297mm;
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+      }
+
+      .page:last-child {
+        page-break-after: auto;
+      }
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="page">
+      <div class="hero">
+        <h1>料金表</h1>
+        <p>小規模企業・店舗向けホームページ制作</p>
+      </div>
+
+      <div class="brand">Machinology</div>
+
+      <p class="lead">
+        事業内容や目的に合わせて、必要な内容だけを整理したホームページを制作します。まずは小さく公開し、必要に応じて改善していける構成をご提案します。
+      </p>
+
+      <h2 class="section-title">基本料金</h2>
+      <div class="gold-line"></div>
+
+      <table class="basic-table">
+        <thead>
+          <tr>
+            <th class="col-service">サービス</th>
+            <th class="col-price">料金目安</th>
+            <th class="col-use">おすすめ用途</th>
+            <th class="col-content">主な内容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="service">シンプルホームページ制作</td>
+            <td class="price">55,000円〜</td>
+            <td>名刺代わりの小規模サイト</td>
+            <td>トップページ中心／基本情報／お問い合わせ導線／スマホ対応</td>
+          </tr>
+          <tr>
+            <td class="service">店舗向けホームページ制作</td>
+            <td class="price">110,000円〜</td>
+            <td>飲食店・美容室・サロン・教室など</td>
+            <td>店舗紹介／メニュー・料金／営業時間／アクセス／予約・LINE導線</td>
+          </tr>
+          <tr>
+            <td class="service">会社・事業紹介サイト制作</td>
+            <td class="price">165,000円〜</td>
+            <td>小規模企業・個人事業の信頼獲得</td>
+            <td>事業内容／強み／実績・事例／採用・問い合わせ導線</td>
+          </tr>
+          <tr>
+            <td class="service">既存サイト改善</td>
+            <td class="price">33,000円〜</td>
+            <td>今あるサイトの見た目・導線改善</td>
+            <td>スマホ表示調整／文章整理／画像差し替え／問い合わせ導線改善</td>
+          </tr>
+          <tr>
+            <td class="service">小規模アプリ制作</td>
+            <td class="price">55,000円〜</td>
+            <td>業務の小さな困りごとを解決</td>
+            <td>予約・管理表・簡易入力フォームなど、内容に応じて個別見積り</td>
+          </tr>
+          <tr>
+            <td class="service">保守・更新サポート</td>
+            <td class="price">5,500円/月〜</td>
+            <td>公開後の軽微な更新・相談</td>
+            <td>文章・画像差し替え／表示確認／軽微な修正／運用相談</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="note">※ 上記は目安料金です。ページ数、掲載内容、機能、素材の有無によりお見積りが変動します。</p>
+      <p class="note">※ ドメイン・サーバー費用、外部サービス利用料、有料素材費などが必要な場合は別途ご案内します。</p>
+
+      <div class="footer">Machinology</div>
+    </section>
+
+    <section class="page">
+      <h2 class="section-title small">オプション料金</h2>
+
+      <table class="option-table">
+        <thead>
+          <tr>
+            <th class="col-item">項目</th>
+            <th class="col-price">料金目安</th>
+            <th class="col-desc">内容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>追加ページ制作</td>
+            <td class="price">11,000円〜/ページ</td>
+            <td>サービス紹介、メニュー、事例、採用などのページ追加</td>
+          </tr>
+          <tr>
+            <td>文章作成サポート</td>
+            <td class="price">11,000円〜</td>
+            <td>ヒアリング内容をもとに、掲載文を整えます</td>
+          </tr>
+          <tr>
+            <td>画像選定・簡易加工</td>
+            <td class="price">5,500円〜</td>
+            <td>雰囲気に合う画像選定、サイズ調整、トリミングなど</td>
+          </tr>
+          <tr>
+            <td>お問い合わせフォーム設置</td>
+            <td class="price">11,000円〜</td>
+            <td>問い合わせ受付用フォームの設置</td>
+          </tr>
+          <tr>
+            <td>SEO基本設定</td>
+            <td class="price">11,000円〜</td>
+            <td>タイトル、説明文、検索表示向けの基本設定</td>
+          </tr>
+          <tr>
+            <td>アクセス解析設定</td>
+            <td class="price">11,000円〜</td>
+            <td>Google Analytics等の初期設定サポート</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title small">制作の流れ</h2>
+      <div class="flow-grid">
+        <div class="flow-card">
+          <h3>1. 無料相談・ヒアリング</h3>
+          <p>目的、掲載内容、必要なページ、希望デザインを確認します。</p>
+        </div>
+        <div class="flow-card">
+          <h3>2. お見積り・内容確認</h3>
+          <p>制作範囲、料金、スケジュールを明確にしてご提案します。</p>
+        </div>
+        <div class="flow-card">
+          <h3>3. 制作・確認</h3>
+          <p>文章・画像を反映し、スマホ表示も含めて確認します。</p>
+        </div>
+        <div class="flow-card">
+          <h3>4. 公開・運用サポート</h3>
+          <p>公開後の更新や改善も、必要に応じてサポートします。</p>
+        </div>
+      </div>
+
+      <h2 class="section-title small">制作に含まれる基本対応</h2>
+      <ul class="check-list">
+        <li>スマートフォン表示に対応したレイアウト</li>
+        <li>掲載内容の整理と導線設計</li>
+        <li>基本的なSEO設定（タイトル・説明文など）</li>
+        <li>公開前の表示確認</li>
+        <li>お問い合わせ・LINE・電話などへの導線設置</li>
+      </ul>
+
+      <h2 class="section-title small">ご確認事項</h2>
+      <ul class="bullet-list">
+        <li>・正式な料金は、制作内容を確認したうえで個別にお見積りいたします。</li>
+        <li>・原稿・写真・ロゴなどの素材をご用意いただける場合、制作をスムーズに進められます。</li>
+        <li>・ドメイン・サーバー・予約システム・決済サービスなど、外部サービスの契約費用は別途必要になる場合があります。</li>
+        <li>・公開後の大幅なデザイン変更や機能追加は、別途お見積りとなります。</li>
+      </ul>
+
+      <div class="contact-box">
+        <p class="main">ご相談・お見積りはお気軽にご連絡ください</p>
+        <p class="sub">Machinology｜ホームページ制作・小規模Web制作</p>
+      </div>
+
+      <div class="footer">Machinology</div>
+    </section>
+  </main>
+</body>
+</html>

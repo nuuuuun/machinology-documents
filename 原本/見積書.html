@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>御見積書 - Machinology</title>
+  <style>
+    :root {
+      --ink: #2e2a26;
+      --muted: #7b746c;
+      --line: #ded7cc;
+      --paper: #fffdf8;
+      --soft: #f7f1e8;
+      --gold: #b9935a;
+      --gold-dark: #8d6b36;
+      --gray: #f5f5f3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #ece7df;
+      color: var(--ink);
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Yu Gothic Medium", Meiryo, sans-serif;
+      line-height: 1.65;
+      letter-spacing: 0.02em;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 24px auto;
+      padding: 20mm 18mm 16mm;
+      background: var(--paper);
+      box-shadow: 0 18px 45px rgba(45, 38, 28, 0.16);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 88% 5%, rgba(185, 147, 90, 0.16), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,0.5), transparent 50%);
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: flex-start;
+      padding-bottom: 18px;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .title-block h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+    }
+
+    .title-block .subtitle {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .doc-meta {
+      min-width: 210px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .meta-row {
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      gap: 8px;
+      border-bottom: 1px solid var(--line);
+      padding: 4px 0;
+    }
+
+    .meta-row span:first-child {
+      color: var(--gold-dark);
+      font-weight: 700;
+    }
+
+    .top-section {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .client-name {
+      font-size: 20px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+
+    .client-name .sama {
+      font-size: 14px;
+      margin-left: 10px;
+      font-weight: 500;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .company-box {
+      background: rgba(247, 241, 232, 0.82);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 18px;
+    }
+
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      color: var(--gold-dark);
+      margin-bottom: 8px;
+    }
+
+    .company-box p {
+      margin: 2px 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .amount-box {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      border: 1px solid var(--gold);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .amount-label {
+      background: var(--gold);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      font-size: 15px;
+    }
+
+    .amount-value {
+      padding: 16px 20px;
+      text-align: right;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .amount-note {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: -4px;
+    }
+
+    .section-title {
+      margin: 28px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--gold);
+      display: inline-block;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-size: 12px;
+    }
+
+    th {
+      background: var(--soft);
+      color: var(--gold-dark);
+      font-weight: 700;
+      border: 1px solid var(--line);
+      padding: 9px 8px;
+      text-align: left;
+    }
+
+    td {
+      border: 1px solid var(--line);
+      padding: 9px 8px;
+      vertical-align: top;
+    }
+
+    .num {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .center {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .summary {
+      width: 48%;
+      margin-left: auto;
+      margin-top: 12px;
+    }
+
+    .summary td:first-child {
+      background: #faf8f3;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .summary .total td {
+      background: var(--gold);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .info-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.72);
+      padding: 14px 16px;
+    }
+
+    .info-card h3 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      color: var(--gold-dark);
+      letter-spacing: 0.08em;
+    }
+
+    .info-card p, .info-card li {
+      margin: 0;
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.2em;
+    }
+
+    .remarks {
+      min-height: 82px;
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    footer {
+      position: absolute;
+      left: 18mm;
+      right: 18mm;
+      bottom: 12mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #9a9288;
+      font-size: 10px;
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+      z-index: 1;
+    }
+
+    .stamp-area {
+      margin-top: 14px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .stamp-box {
+      width: 78px;
+      height: 78px;
+      border: 1px dashed var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(141, 107, 54, 0.6);
+      font-size: 11px;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+      .page {
+        margin: 0;
+        width: 210mm;
+        min-height: 297mm;
+        box-shadow: none;
+        break-after: page;
+      }
+      @page {
+        size: A4;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="content">
+      <header>
+        <div class="title-block">
+          <h1>御見積書</h1>
+          <div class="subtitle">Estimate Sheet</div>
+        </div>
+        <div class="doc-meta">
+          <div class="meta-row"><span>見積番号</span><span>EST-2026-0001</span></div>
+          <div class="meta-row"><span>発行日</span><span>2026年7月1日</span></div>
+          <div class="meta-row"><span>有効期限</span><span>発行日より30日間</span></div>
+          <div class="meta-row"><span>担当</span><span>Machinology</span></div>
+        </div>
+      </header>
+
+      <section class="top-section">
+        <div>
+          <div class="client-name">〇〇株式会社 <span class="sama">御中</span></div>
+          <p class="lead">
+            下記の通り、お見積り申し上げます。<br />
+            ご要望内容の詳細を確認したうえで、正式金額を調整させていただく場合がございます。
+          </p>
+        </div>
+        <div class="company-box">
+          <div class="brand">Machinology</div>
+          <p>ホームページ制作・小規模Web制作</p>
+          <p>URL：https://Machinology-web.com/</p>
+          <p>Mail：info@example.com</p>
+          <p>所在地：〒000-0000 愛知県〇〇市〇〇</p>
+        </div>
+      </section>
+
+      <section class="amount-box">
+        <div class="amount-label">御見積金額</div>
+        <div class="amount-value">
+          ¥121,000
+          <div class="amount-note">税込 / 消費税10%含む</div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">お見積り内容</h2>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 8%;">No.</th>
+              <th style="width: 36%;">項目</th>
+              <th>内容</th>
+              <th style="width: 10%;" class="center">数量</th>
+              <th style="width: 16%;" class="num">金額</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="center">1</td>
+              <td>店舗向けホームページ制作</td>
+              <td>トップページ、メニュー・サービス紹介、店舗情報、お問い合わせ導線の作成</td>
+              <td class="center">1式</td>
+              <td class="num">¥110,000</td>
+            </tr>
+            <tr>
+              <td class="center">2</td>
+              <td>スマートフォン表示調整</td>
+              <td>スマートフォン・タブレットで見やすいレイアウト調整</td>
+              <td class="center">1式</td>
+              <td class="num">¥0</td>
+            </tr>
+            <tr>
+              <td class="center">3</td>
+              <td>基本SEO設定</td>
+              <td>タイトル、説明文、OGP、基本的な検索表示向け設定</td>
+              <td class="center">1式</td>
+              <td class="num">¥0</td>
+            </tr>
+            <tr>
+              <td class="center">4</td>
+              <td>公開作業サポート</td>
+              <td>ドメイン・サーバー設定の確認、公開時の簡易動作確認</td>
+              <td class="center">1式</td>
+              <td class="num">¥0</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="summary">
+          <tr>
+            <td>小計</td>
+            <td class="num">¥110,000</td>
+          </tr>
+          <tr>
+            <td>消費税 10%</td>
+            <td class="num">¥11,000</td>
+          </tr>
+          <tr class="total">
+            <td>合計</td>
+            <td class="num">¥121,000</td>
+          </tr>
+        </table>
+      </section>
+
+      <section>
+        <h2 class="section-title">条件・補足</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>制作範囲</h3>
+            <ul>
+              <li>掲載文章・画像素材はお客様よりご提供いただく想定です。</li>
+              <li>簡易的な文章調整・構成提案は制作費に含みます。</li>
+              <li>大幅な原稿作成、写真撮影、ロゴ制作は別途お見積りです。</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>納期目安</h3>
+            <p>素材・掲載内容のご共有後、通常2〜4週間程度を目安とします。ページ数や確認回数により変動します。</p>
+          </div>
+          <div class="info-card">
+            <h3>お支払い</h3>
+            <p>原則として、着手時50%、納品時50%でお願いしております。少額案件は一括払いをご相談させていただく場合があります。</p>
+          </div>
+          <div class="info-card">
+            <h3>保守・更新</h3>
+            <p>公開後の更新・修正・運用サポートは、月額5,500円〜にて別途承ります。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">備考</h2>
+        <div class="remarks">
+          ・正式なご契約前に、ページ構成・掲載内容・必要機能を確認し、必要に応じて金額を調整いたします。<br />
+          ・サーバー代、ドメイン代、有料素材、有料サービス利用料などは別途実費となります。<br />
+          ・本見積書に記載のない追加作業が発生する場合は、事前にご相談のうえ対応いたします。
+        </div>
+      </section>
+
+      <div class="stamp-area">
+        <span>確認印</span>
+        <div class="stamp-box">印</div>
+      </div>
+    </div>
+
+    <footer>
+      <span>Machinology | Website Production & Small Web Solutions</span>
+      <span>1 / 1</span>
+    </footer>
+  </main>
+</body>
+</html>
